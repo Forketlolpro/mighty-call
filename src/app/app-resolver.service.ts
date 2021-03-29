@@ -6,7 +6,7 @@ import { AppApiService } from './app-api.service';
 import { Contact } from './interfaces';
 
 @Injectable()
-export class AppResolverService implements Resolve<any>{
+export class AppResolverService implements Resolve<Contact[]>{
 
   constructor(private api: AppApiService) {}
 

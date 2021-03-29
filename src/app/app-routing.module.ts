@@ -4,13 +4,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppResolverService } from './app-resolver.service';
 import { AppApiService } from './app-api.service';
+import { CreateComponent } from './create/create.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    resolve: { contacts: AppResolverService }
-  }
+    resolve: { contacts: AppResolverService },
+    runGuardsAndResolvers: 'pathParamsChange'
+  },
+  {
+    path: 'create',
+    component: CreateComponent
+  },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

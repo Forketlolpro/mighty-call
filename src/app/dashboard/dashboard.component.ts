@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { Contact } from '../interfaces';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,7 +12,7 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
-  readonly contacts: Observable<any> = this.route.data.pipe(map(({ contacts }) => contacts));
+  readonly contacts: Observable<Contact[]> = this.route.data.pipe(map(({ contacts }) => contacts));
 
   constructor(private route: ActivatedRoute) { }
 }
