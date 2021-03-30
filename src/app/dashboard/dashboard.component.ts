@@ -8,8 +8,7 @@ import { Contact } from '../interfaces';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
   readonly contacts: Observable<Contact[]> = this.route.data.pipe(map(({ contacts }) => contacts));

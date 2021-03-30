@@ -1,13 +1,50 @@
-<p>create works!</p>
-<div> {{ form.controls['customFields'] | json }}</div>
-<div>{{ form.value | json }}</div>
-<!--<form [formGroup]="form">-->
-<!--  <input name="name" formControlName="firstName">-->
-<!--  <input name="last" formControlName="lastName">-->
-<!--  <div formArrayName="customFields">-->
-<!--    <div class="form-group" *ngFor="let phone of form.controls['customFields']['controls']; let i = index">-->
-<!--      <label>Телефон</label>-->
-<!--      <input class="form-control" formControlName="{{i}}" />-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</form>-->
+{{ form.value | json }}
+<form [formGroup]="form">
+  <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Name', control: form.get('firstName') }"></ng-container>
+  <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Last name', control: form.get('lastName') }"></ng-container>
+  <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Phone', control: form.get('phone') }"></ng-container>
+  <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Link', control: form.get('link'), deletable: true }"></ng-container>
+
+  <div formArrayName="customFields">
+    <div *ngFor="let group of customFields.controls; let i=index">
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <mat-label>{{ getFieldName(group.value) }}</mat-label>
+          <input
+            matInput
+            type="text"
+            [formControlName]="getFieldName(group.value)">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</form>
+
+<app-field-creator [(contactForm)]="form"></app-field-creator>
+
+<ng-template #formField let-title="title" let-control="control" let-deletable="deletable">
+  <mat-form-field *ngIf="control">
+    <mat-label>{{ title }}</mat-label>
+    <input
+        matInput
+        type="text"
+        [formControl]="control">
+    <button
+        *ngIf="control.value"
+        mat-button
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="control.setValue('')">
+      <mat-icon>close</mat-icon>
+    </button>
+    <button
+        *ngIf="deletable"
+        class="delete-field-button"
+        mat-icon-button
+        (click)="deleteField(control)">
+      <mat-icon>highlight_off</mat-icon>
+    </button>
+  </mat-form-field>
+</ng-template>
+

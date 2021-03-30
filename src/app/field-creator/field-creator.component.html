@@ -1,0 +1,39 @@
+<button mat-button (click)="addMode = !addMode" [disabled]="addMode">
+  <mat-icon *ngIf="!addMode">add_circle_outline</mat-icon>
+  Add new field
+</button>
+<form *ngIf="addMode" #form="ngForm">
+  <mat-radio-group [(ngModel)]="currentType" name="type">
+    <mat-radio-button class="example-margin" [value]="FieldType.Text">Text</mat-radio-button>
+    <mat-radio-button class="example-margin" [value]="FieldType.Phone">Phone number</mat-radio-button>
+    <mat-radio-button class="example-margin" [value]="FieldType.Link">Link</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-form-field *ngIf="currentType === FieldType.Text">
+    <mat-label>Field name</mat-label>
+    <input
+        [(ngModel)]="fieldName"
+        required
+        name="fieldName"
+        matInput
+        type="text">
+    <button
+        *ngIf="fieldName"
+        mat-button
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="fieldName = ''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <div>
+    <button mat-icon-button [disabled]="form.pristine || addDisabled" (click)="addField()">
+      <mat-icon>task_alt</mat-icon>
+    </button>
+    <button mat-icon-button (click)="addMode = false">
+      <mat-icon>highlight_off</mat-icon>
+    </button>
+  </div>
+</form>
