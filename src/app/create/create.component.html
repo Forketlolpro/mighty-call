@@ -8,13 +8,10 @@
   <div formArrayName="customFields">
     <div *ngFor="let group of customFields.controls; let i=index">
       <div [formGroupName]="i">
-        <mat-form-field>
-          <mat-label>{{ getFieldName(group.value) }}</mat-label>
-          <input
-            matInput
-            type="text"
-            [formControlName]="getFieldName(group.value)">
-        </mat-form-field>
+        <ng-container
+            [ngTemplateOutlet]="formField"
+            [ngTemplateOutletContext]="{ title: getFieldName(group.value), control: group.get(getFieldName(group.value)), deletable: true }">
+        </ng-container>
       </div>
     </div>
   </div>

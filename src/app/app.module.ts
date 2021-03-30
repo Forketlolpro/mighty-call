@@ -16,6 +16,7 @@ import { ContactComponent } from './contact/contact.component';
 import { CreateComponent } from './create/create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldCreatorComponent } from './field-creator/field-creator.component';
+import { InputValueValidatorDirective } from './field-creator/input-value-validator.directive';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FieldCreatorComponent } from './field-creator/field-creator.component';
     DashboardComponent,
     ContactComponent,
     CreateComponent,
-    FieldCreatorComponent
+    FieldCreatorComponent,
+    InputValueValidatorDirective
   ],
   imports: [
     HttpClientModule,

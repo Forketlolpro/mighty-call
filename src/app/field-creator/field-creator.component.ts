@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export enum FieldType {
   Text = 'text',
@@ -25,6 +25,10 @@ export class FieldCreatorComponent {
     return this.hasField(this.currentType) || (this.currentType === FieldType.Text && this.fieldName === '');
   }
 
+  get forbiddenValues(): string[] {
+    return (this.contactForm.get('customFields') as FormArray).controls.map( control => Object.keys(control.value)[0]);
+  }
+
   constructor(private fb: FormBuilder) {}
 
   hasField(name: string): boolean {
@@ -32,13 +36,15 @@ export class FieldCreatorComponent {
   }
 
   addField(): void {
-    this.addMode = false;
     if (this.currentType === FieldType.Text) {
       const formGroup = this.fb.group({ [this.fieldName]: [''] });
       (this.contactForm.get('customFields') as FormArray).push(formGroup);
     } else {
       this.contactForm.addControl(FieldType.Link, this.fb.control('', Validators.required));
     }
+    this.fieldName = '';
+    this.addMode = false;
+    this.currentType = FieldType.Text;
     this.contactFormChange.emit(this.contactForm);
   }
 }

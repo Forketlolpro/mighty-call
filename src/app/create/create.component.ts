@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create',
@@ -26,8 +26,8 @@ export class CreateComponent {
     return Object.keys(value)[0];
   }
 
-  deleteField(control: FormControl): void {
-    Object.entries(this.form.controls).forEach(([key, value]) => {
+  deleteField(control: AbstractControl): void {
+    Object.entries((control.parent as FormGroup).controls).forEach(([key, value]) => {
       if (value === control){
         (control.parent as FormGroup).removeControl(key);
       }
