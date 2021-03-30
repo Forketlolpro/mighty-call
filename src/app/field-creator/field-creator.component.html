@@ -30,7 +30,6 @@
   </mat-form-field>
 
   <div>
-    {{ form.pristine }}{{ form.valid }}
     <button mat-icon-button [disabled]="form.pristine || !form.valid || addDisabled" (click)="addField()">
       <mat-icon>task_alt</mat-icon>
     </button>

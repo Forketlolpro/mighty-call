@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppApiService } from '../app-api.service';
 
 @Component({
   selector: 'app-create',
@@ -13,7 +14,7 @@ export class CreateComponent {
     return this.form.get('customFields') as FormArray;
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private api: AppApiService) {
     this.form = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -32,5 +33,10 @@ export class CreateComponent {
         (control.parent as FormGroup).removeControl(key);
       }
     });
+  }
+
+  saveContact(): void {
+    this.api.addContact().subscribe(data => console.log(data));
+    console.log('save', this.form.value);
   }
 }

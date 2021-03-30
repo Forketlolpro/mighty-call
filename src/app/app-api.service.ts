@@ -11,4 +11,8 @@ export class AppApiService {
   getContacts(): Observable<Contact[]> {
     return this.http.get<Contact[]>('assets/data.json');
   }
+
+  addContact(): Observable<boolean> {
+    return this.http.post<boolean>('assets/data.json', ['asdads']);
+  }
 }

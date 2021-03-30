@@ -1,4 +1,3 @@
-{{ form.value | json }}
 <form [formGroup]="form">
   <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Name', control: form.get('firstName') }"></ng-container>
   <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Last name', control: form.get('lastName') }"></ng-container>
@@ -18,6 +17,13 @@
 </form>
 
 <app-field-creator [(contactForm)]="form"></app-field-creator>
+
+<div>
+  <button class="main-button" mat-raised-button color="primary" (click)="saveContact()">
+    <mat-icon class="main-button-icon">add_circle_outline</mat-icon>Save contact
+  </button>
+  <button mat-raised-button color="primary" [routerLink]="['..']">Cancel</button>
+</div>
 
 <ng-template #formField let-title="title" let-control="control" let-deletable="deletable">
   <mat-form-field *ngIf="control">
