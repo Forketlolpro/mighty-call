@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Resolve } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AppApiService } from './app-api.service';
 import { Contact } from './interfaces';
 
 @Injectable()
-export class AppResolverService implements Resolve<Contact[]>{
+export class AppResolverService implements Resolve<Contact[] | Contact>{
 
   constructor(private api: AppApiService) {}
 
-  resolve(): Observable<Contact[]> {
-    return this.api.getContacts();
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Contact[] | Contact> {
+    return route.params.id ? this.api.getContact(route.params.id) : this.api.getContacts();
   }
 }

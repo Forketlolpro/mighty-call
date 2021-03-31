@@ -15,7 +15,14 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: CreateComponent
+    component: CreateComponent,
+    data: { title: 'Create contact' },
+  },
+  {
+    path: 'edit/:id',
+    component: CreateComponent,
+    data: { title: 'Edit contact' },
+    resolve: { contacts: AppResolverService }
   },
   { path: '**', redirectTo: '' },
 ];

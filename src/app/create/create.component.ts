@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
 import { AppApiService } from '../app-api.service';
 
 @Component({
@@ -7,15 +9,16 @@ import { AppApiService } from '../app-api.service';
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
-export class CreateComponent {
+export class CreateComponent implements OnInit {
   form!: FormGroup;
 
   get customFields(): FormArray {
     return this.form.get('customFields') as FormArray;
   }
 
-  constructor(private fb: FormBuilder, private api: AppApiService) {
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private api: AppApiService) {
     this.form = this.fb.group({
+      id: [Date.now().toString()],
       name: ['', Validators.required],
       surname: ['', Validators.required],
       phone: ['', Validators.required],
@@ -23,7 +26,15 @@ export class CreateComponent {
     });
   }
 
-  getFieldName(value: any): string {
+  ngOnInit(): void {
+    this.route.data.subscribe(({ contacts }) => {
+      if (contacts) {
+        this.form.reset(contacts);
+      }
+    });
+  }
+
+  getFieldName(value: string): string {
     return Object.keys(value)[0];
   }
 

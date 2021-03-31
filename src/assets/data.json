@@ -3,12 +3,14 @@
     "id": "1617192689492",
     "name": "Ilya",
     "surname": "Chanurov",
-    "phone": "12345678"
+    "phone": "12345678",
+    "customFields": []
   },
   {
     "id": "1617192689",
     "name": "Olga",
     "surname": "Berchuk",
-    "phone": "987654321"
+    "phone": "987654321",
+    "customFields": []
   }
 ]

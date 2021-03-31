@@ -1,7 +1,7 @@
 <mat-card class="card">
   <mat-card-header class="card-header">
     <mat-card-title>{{ contact.name }}</mat-card-title>
-    <button class="card-edit-button" mat-icon-button>
+    <button class="card-edit-button" mat-icon-button [routerLink]="['/edit', contact.id]">
       <mat-icon>create</mat-icon>
     </button>
   </mat-card-header>
