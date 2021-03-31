@@ -17,8 +17,7 @@ export class AppApiService {
   }
 
   getContact(id: string): Observable<Contact> {
-    // tslint:disable-next-line:no-non-null-assertion
-    return of(this.data.get(id)!);
+    return of(this.data.get(id) as Contact);
   }
 
   private parseData(d: any): Contact[] {

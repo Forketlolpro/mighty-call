@@ -3,6 +3,7 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '
 import { ActivatedRoute } from '@angular/router';
 
 import { AppApiService } from '../app-api.service';
+import { Contact } from '../interfaces';
 
 @Component({
   selector: 'app-create',
@@ -29,8 +30,7 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(({ contacts }) => {
       if (contacts) {
-        this.form.reset(contacts);
-        this.resetFormArray(contacts.customFields);
+        this.initForm(contacts);
       }
     });
   }
@@ -40,6 +40,7 @@ export class CreateComponent implements OnInit {
   }
 
   deleteField(control: AbstractControl): void {
+    this.form.markAsDirty();
     Object.entries((control.parent as FormGroup).controls).forEach(([key, value]) => {
       if (value === control){
         (control.parent as FormGroup).removeControl(key);
@@ -48,7 +49,16 @@ export class CreateComponent implements OnInit {
   }
 
   saveContact(): void {
+    this.form.value.customFields = (this.form.value as Contact).customFields.filter(field => Object.keys(field)[0]);
     this.api.addContact(this.form.value);
+  }
+
+  private initForm(contact: Contact): void {
+    this.form.reset(contact);
+    if (contact.link) {
+      this.form.addControl('link', this.fb.control(contact.link));
+    }
+    this.resetFormArray(contact.customFields);
   }
 
   private resetFormArray(customFields: [{ [key: string]: string }]): void {

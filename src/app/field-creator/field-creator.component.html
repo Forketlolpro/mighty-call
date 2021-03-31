@@ -1,5 +1,5 @@
-<button mat-button (click)="addMode = !addMode" [disabled]="addMode">
-  <mat-icon *ngIf="!addMode">add_circle_outline</mat-icon>
+<button class="main-button" mat-button (click)="addMode = !addMode" [disabled]="addMode">
+  <mat-icon *ngIf="!addMode" class="main-button-icon">add_circle_outline</mat-icon>
   Add new field
 </button>
 <form *ngIf="addMode" #form="ngForm">

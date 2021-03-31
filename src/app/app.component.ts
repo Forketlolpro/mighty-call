@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  get isCreatePage(): boolean {
-    return this.router.url === '/create';
+  get isDashboard(): boolean {
+    return this.router.url === '/';
   }
 
   constructor(private router: Router) {}

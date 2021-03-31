@@ -1,6 +1,8 @@
+@import '~@angular/material/theming';
+
 .card {
   padding: 4px 18px;
-  width: 200px;
+  width: 235px;
   margin-bottom: 12px;
 }
 
@@ -12,7 +14,6 @@
 
 .card-header {
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
 }
 
@@ -22,5 +23,11 @@
 }
 
 .card-edit-button {
+  transform: scale(0.7);
   visibility: hidden;
+}
+
+.card-field {
+  color: #4c75e6;
+  margin-bottom: 5px;
 }

@@ -1,6 +1,19 @@
+:host {
+  width: 271px;
+}
+
 .delete-field-button {
   position: absolute;
   top: -7px;
   right: -60px;
   transform: scale(0.9);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  width: 100%;
 }

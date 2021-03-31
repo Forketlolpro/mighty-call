@@ -1,18 +1,18 @@
-<form [formGroup]="form">
+<form [formGroup]="form" class="form">
   <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Name', control: form.get('name') }"></ng-container>
   <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Last name', control: form.get('surname') }"></ng-container>
   <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Phone', control: form.get('phone') }"></ng-container>
   <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Link', control: form.get('link'), deletable: true }"></ng-container>
 
   <div formArrayName="customFields">
-    <div *ngFor="let group of customFields.controls; let i=index">
+    <ng-container *ngFor="let group of customFields.controls; let i=index">
       <div [formGroupName]="i">
         <ng-container
             [ngTemplateOutlet]="formField"
             [ngTemplateOutletContext]="{ title: getFieldName(group.value), control: group.get(getFieldName(group.value)), deletable: true }">
         </ng-container>
       </div>
-    </div>
+    </ng-container>
   </div>
 </form>
 
@@ -22,11 +22,11 @@
   <button class="main-button" mat-raised-button color="primary" [disabled]="form.pristine || form.invalid" [routerLink]="['..']" (click)="saveContact()">
     <mat-icon class="main-button-icon">add_circle_outline</mat-icon>Save contact
   </button>
-  <button mat-raised-button color="primary" [routerLink]="['..']">Cancel</button>
+  <button class="main-button" mat-raised-button color="primary" [routerLink]="['..']">Cancel</button>
 </div>
 
 <ng-template #formField let-title="title" let-control="control" let-deletable="deletable">
-  <mat-form-field *ngIf="control">
+  <mat-form-field *ngIf="control" class="form-field">
     <mat-label>{{ title }}</mat-label>
     <input
         matInput
