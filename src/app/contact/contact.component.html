@@ -1,8 +1,15 @@
 <mat-card class="card">
-  <mat-card-header class="card-header">
-    <mat-card-title>{{ contact.name }}</mat-card-title>
+  <div class="card-header">
+    <div class="card-tittle">{{ fullName }}</div>
     <button class="card-edit-button" mat-icon-button [routerLink]="['/edit', contact.id]">
       <mat-icon>create</mat-icon>
     </button>
-  </mat-card-header>
+  </div>
+  <div class="card-content">
+    <div class="card-field">{{ contact.phone }}</div>
+    <div class="card-field">{{ contact.link }}</div>
+    <div class="card-custom-field" *ngFor="let field of contact.customFields">
+      {{ getCustomFieldLiable(field) }}
+    </div>
+  </div>
 </mat-card>

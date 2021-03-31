@@ -1,10 +1,11 @@
 [
   {
     "id": "1617192689492",
-    "name": "Ilya",
-    "surname": "Chanurov",
-    "phone": "12345678",
-    "customFields": []
+    "name": "Bill",
+    "surname": "Gates",
+    "phone": "+79818930144",
+    "link": "asdasd@asd.com",
+    "customFields": [{ "color": "red" }]
   },
   {
     "id": "1617192689",

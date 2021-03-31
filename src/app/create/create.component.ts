@@ -30,6 +30,7 @@ export class CreateComponent implements OnInit {
     this.route.data.subscribe(({ contacts }) => {
       if (contacts) {
         this.form.reset(contacts);
+        this.resetFormArray(contacts.customFields);
       }
     });
   }
@@ -48,5 +49,11 @@ export class CreateComponent implements OnInit {
 
   saveContact(): void {
     this.api.addContact(this.form.value);
+  }
+
+  private resetFormArray(customFields: [{ [key: string]: string }]): void {
+    customFields.forEach(field => {
+      (this.form.get('customFields') as FormArray).push(this.fb.group({ [Object.keys(field)[0]]: [Object.values(field)[0]] }));
+    });
   }
 }
