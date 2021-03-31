@@ -30,7 +30,7 @@
   </mat-form-field>
 
   <div>
-    <button mat-icon-button [disabled]="form.pristine || !form.valid || addDisabled" (click)="addField()">
+    <button mat-icon-button [disabled]="form.pristine || form.invalid || addDisabled" (click)="addField()">
       <mat-icon>task_alt</mat-icon>
     </button>
     <button mat-icon-button (click)="addMode = false">

@@ -1,6 +1,6 @@
 <header class="header">
-  <h4>Contacts</h4>
-  <button class="main-button" mat-raised-button color="primary" [routerLink]="['/create']">
+  <h4>{{ isCreatePage ? 'Add contact' : 'Contacts' }}</h4>
+  <button *ngIf="!isCreatePage" class="main-button" mat-raised-button color="primary" [routerLink]="['/create']">
     <mat-icon class="main-button-icon">add_circle_outline</mat-icon>Add
   </button>
 </header>

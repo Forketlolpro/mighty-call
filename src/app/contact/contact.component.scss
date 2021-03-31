@@ -1,4 +1,20 @@
-.contact-card {
+.card {
   width: 200px;
   margin-bottom: 12px;
+}
+
+.card:hover {
+  .card-edit-button {
+    visibility: visible;
+  }
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.card-edit-button {
+  visibility: hidden;
 }

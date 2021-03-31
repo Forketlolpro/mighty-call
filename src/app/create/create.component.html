@@ -1,6 +1,6 @@
 <form [formGroup]="form">
-  <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Name', control: form.get('firstName') }"></ng-container>
-  <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Last name', control: form.get('lastName') }"></ng-container>
+  <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Name', control: form.get('name') }"></ng-container>
+  <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Last name', control: form.get('surname') }"></ng-container>
   <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Phone', control: form.get('phone') }"></ng-container>
   <ng-container [ngTemplateOutlet]="formField" [ngTemplateOutletContext]="{ title: 'Link', control: form.get('link'), deletable: true }"></ng-container>
 
@@ -19,7 +19,7 @@
 <app-field-creator [(contactForm)]="form"></app-field-creator>
 
 <div>
-  <button class="main-button" mat-raised-button color="primary" (click)="saveContact()">
+  <button class="main-button" mat-raised-button color="primary" [disabled]="form.pristine || form.invalid" [routerLink]="['..']" (click)="saveContact()">
     <mat-icon class="main-button-icon">add_circle_outline</mat-icon>Save contact
   </button>
   <button mat-raised-button color="primary" [routerLink]="['..']">Cancel</button>

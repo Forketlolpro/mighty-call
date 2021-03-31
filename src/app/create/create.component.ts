@@ -16,8 +16,8 @@ export class CreateComponent {
 
   constructor(private fb: FormBuilder, private api: AppApiService) {
     this.form = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
       phone: ['', Validators.required],
       customFields: this.fb.array([])
     });
@@ -36,7 +36,6 @@ export class CreateComponent {
   }
 
   saveContact(): void {
-    this.api.addContact().subscribe(data => console.log(data));
-    console.log('save', this.form.value);
+    this.api.addContact(this.form.value);
   }
 }

@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import data from './../assets/data.json';
 
 import { Contact } from './interfaces';
 
 @Injectable()
 export class AppApiService {
-  constructor(private http: HttpClient) {}
+  data: Contact[] = data as Contact[];
 
   getContacts(): Observable<Contact[]> {
-    return this.http.get<Contact[]>('assets/data.json');
+    return of(this.data);
   }
 
-  addContact(): Observable<boolean> {
-    return this.http.post<boolean>('assets/data.json', ['asdads']);
+  addContact(contact: Contact): void {
+    this.data.push(contact);
   }
 }
