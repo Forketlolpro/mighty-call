@@ -1,7 +1,8 @@
 <header class="header">
   <h4>{{ !isDashboard ? 'Add contact' : 'Contacts' }}</h4>
   <button *ngIf="isDashboard" class="main-button" mat-raised-button color="primary" [routerLink]="['/create']">
-    <mat-icon class="main-button-icon">add_circle_outline</mat-icon>Add
+    <mat-icon class="main-button-icon">add_circle_outline</mat-icon>
+    Add
   </button>
 </header>
 <router-outlet></router-outlet>

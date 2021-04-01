@@ -3,7 +3,7 @@
   Add new field
 </button>
 <form *ngIf="addMode" #form="ngForm" class="form">
-  <mat-radio-group [(ngModel)]="currentType" name="type" class="radio-group">
+  <mat-radio-group color="primary" [(ngModel)]="currentType" name="type" class="radio-group">
     <mat-radio-button class="example-margin" [value]="FieldType.Text">Text</mat-radio-button>
     <mat-radio-button class="example-margin" [value]="FieldType.Phone">Phone number</mat-radio-button>
     <mat-radio-button class="example-margin" [value]="FieldType.Link">Link</mat-radio-button>
@@ -30,7 +30,7 @@
   </mat-form-field>
 
   <div class="button-wrapper">
-    <button mat-icon-button [disabled]="form.pristine || form.invalid || addDisabled" (click)="addField()">
+    <button mat-icon-button color="primary" [disabled]="addDisabled" (click)="addField()">
       <mat-icon>task_alt</mat-icon>
     </button>
     <button mat-icon-button (click)="addMode = false">

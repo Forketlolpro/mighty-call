@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 export enum FieldType {
   Text = 'text',
@@ -20,9 +20,12 @@ export class FieldCreatorComponent {
 
   @Input() contactForm!: FormGroup;
   @Output() contactFormChange = new EventEmitter<FormGroup>();
+  @ViewChild('form')
+  form!: NgForm;
 
   get addDisabled(): boolean {
-    return this.hasField(this.currentType) || (this.currentType === FieldType.Text && this.fieldName === '');
+    return this.currentType === FieldType.Text
+      ? this.fieldName === '' || Boolean(this.form?.invalid) : this.form?.pristine || this.hasField(this.currentType);
   }
 
   get forbiddenValues(): string[] {

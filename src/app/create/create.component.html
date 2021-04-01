@@ -22,7 +22,7 @@
   <button class="main-button" mat-raised-button color="primary" [disabled]="form.pristine || form.invalid" [routerLink]="['..']" (click)="saveContact()">
     <mat-icon class="main-button-icon">add_circle_outline</mat-icon>Save contact
   </button>
-  <button class="main-button" mat-raised-button color="primary" [routerLink]="['..']">Cancel</button>
+  <button class="main-button blue" mat-raised-button [routerLink]="['..']">Cancel</button>
 </div>
 
 <ng-template #formField let-title="title" let-control="control" let-deletable="deletable">

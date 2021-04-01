@@ -1,8 +1,8 @@
 export interface Contact {
-  id: string;
+  id: number;
   name: string;
   surname: string;
-  phone: string;
+  phone: number;
   customFields: [{ [key: string]: string }];
   link?: string;
 }

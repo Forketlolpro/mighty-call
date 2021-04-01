@@ -15,13 +15,11 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: CreateComponent,
-    data: { title: 'Create contact' },
+    component: CreateComponent
   },
   {
     path: 'edit/:id',
     component: CreateComponent,
-    data: { title: 'Edit contact' },
     resolve: { contacts: AppResolverService }
   },
   { path: '**', redirectTo: '' },
