@@ -18,7 +18,7 @@
 
 <app-field-creator [(contactForm)]="form"></app-field-creator>
 
-<div>
+<div class="button-wrapper">
   <button class="main-button" mat-raised-button color="primary" [disabled]="form.pristine || form.invalid" [routerLink]="['..']" (click)="saveContact()">
     <mat-icon class="main-button-icon">add_circle_outline</mat-icon>Save contact
   </button>
@@ -26,21 +26,23 @@
 </div>
 
 <ng-template #formField let-title="title" let-control="control" let-deletable="deletable">
-  <mat-form-field *ngIf="control" class="form-field">
-    <mat-label>{{ title }}</mat-label>
-    <input
-        matInput
-        type="text"
-        [formControl]="control">
-    <button
-        *ngIf="control.value"
-        mat-button
-        matSuffix
-        mat-icon-button
-        aria-label="Clear"
-        (click)="control.setValue('')">
-      <mat-icon>close</mat-icon>
-    </button>
+  <div *ngIf="control" class="field-wrapper">
+    <mat-form-field class="form-field">
+      <mat-label>{{ title }}</mat-label>
+      <input
+          matInput
+          type="text"
+          [formControl]="control">
+      <button
+          *ngIf="control.value"
+          mat-button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="control.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
     <button
         *ngIf="deletable"
         class="delete-field-button"
@@ -48,6 +50,6 @@
         (click)="deleteField(control)">
       <mat-icon>highlight_off</mat-icon>
     </button>
-  </mat-form-field>
+  </div>
 </ng-template>
 

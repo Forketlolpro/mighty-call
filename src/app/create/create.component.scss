@@ -1,12 +1,13 @@
 :host {
-  width: 271px;
+  width: 355px;
 }
 
 .delete-field-button {
-  position: absolute;
-  top: -7px;
-  right: -60px;
   transform: scale(0.9);
+}
+
+.field-wrapper {
+  display: flex;
 }
 
 .form {
@@ -16,4 +17,10 @@
 
 .form-field {
   width: 100%;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 51px;
 }
