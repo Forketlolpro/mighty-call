@@ -6,7 +6,7 @@ import { Contact } from './interfaces';
 
 @Injectable()
 export class AppApiService {
-  private data = new Map<number, Contact>(this.parseData(data).map(item => [item.id, item]));
+  private data = new Map<string, Contact>((data as any[]).map(item => [item.id, item]));
 
   getContacts(): Observable<Contact[]> {
     return of([...this.data.values()]);
@@ -16,12 +16,7 @@ export class AppApiService {
     this.data.set(contact.id, contact);
   }
 
-  getContact(id: number): Observable<Contact> {
+  getContact(id: string): Observable<Contact> {
     return of(this.data.get(id) as Contact);
-  }
-
-  private parseData(rawData: any): Contact[] {
-    rawData.map((item: any) => ({ ...item, customFields: [ ...item.customFields ] } as Contact));
-    return rawData as Contact[];
   }
 }

@@ -3,15 +3,15 @@
     "id": "1617192689492",
     "name": "Bill",
     "surname": "Gates",
-    "phone": "+79818930144",
-    "link": "asdasd@asd.com",
-    "customFields": [{ "color": "red" }]
+    "phone": "+19171234566",
+    "link": "test@ms.com",
+    "customFields": [{ "Color": "red" }]
   },
   {
     "id": "1617192689",
-    "name": "Olga",
-    "surname": "Berchuk",
-    "phone": "987654321",
+    "name": "Sergei",
+    "surname": "Brin",
+    "phone": "+79173216654",
     "customFields": []
   }
 ]

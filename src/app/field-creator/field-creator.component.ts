@@ -43,7 +43,7 @@ export class FieldCreatorComponent {
       const formGroup = this.fb.group({ [this.fieldName]: [''] });
       (this.contactForm.get('customFields') as FormArray).push(formGroup);
     } else {
-      this.contactForm.addControl(FieldType.Link, this.fb.control('', Validators.required));
+      this.contactForm.addControl(FieldType.Link, this.fb.control('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')]));
     }
     this.fieldName = '';
     this.addMode = false;

@@ -23,7 +23,7 @@ export class CreateComponent implements OnInit {
       id: [Date.now().toString()],
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      phone: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9-+\s()]*$')]],
       customFields: this.fb.array([])
     });
   }
